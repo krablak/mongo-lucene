@@ -29,7 +29,7 @@ dependencies {
 	compile("org.apache.lucene:lucene-queryparser:${luceneVersion}")
 	compile("org.apache.lucene:lucene-analyzers-common:${luceneVersion}")
 	compile("org.mongodb:mongo-java-driver:${mongoVersion}")
-	compile("com.github.mongoutils:mongo-lucene:${mongoCollectionsVersion}")
+	compile("com.github.mongoutils:mongo-collections:${mongoCollectionsVersion}")
 	testCompile("junit:junit:${jUnitVersion}")
 }
 
