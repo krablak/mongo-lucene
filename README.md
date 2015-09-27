@@ -15,15 +15,28 @@ Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
 
 ## Requirements / Dependencies
 
-* Java 1.8 (http://www.java.com/de/download/)
-* Apache Lucene 5.3.0 (http://lucene.apache.org)
-* MongoDB Java-Driver 2.12.3 (https://github.com/mongodb/)
+* Java 8 JDK 
+* Apache Lucene 5.3.0 
+* MongoDB Java-Driver 2.12.3
+* MongoDB 3.x
 
 ## Building
-**TODO**
+
+1. Download and build from sources:
+
+		git clone https://github.com/krablak/mongo-lucene.git
+		cd mongo-lucene/
+		./gradlew clean build -x test
+		# Or without tests skipping when your mongodb required for tests instance is running
+		#./gradlew clean build
+	
+2. Ready to use JAR file is present at: */build/libs/mongo-lucene-mailor-x.x.x.jarr*
 
 ## Usage
+
 Following usage sample is present in file *mongo-lucene/src/test/java/com/github/mongoutils/lucene/CodeSample.java*:
+
+(*Don't forget to startup your MongoDB before running sample code.*)
 
 
 		// Prepare mongo connection
