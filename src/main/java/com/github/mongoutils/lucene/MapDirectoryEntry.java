@@ -1,74 +1,82 @@
 package com.github.mongoutils.lucene;
 
-import org.apache.lucene.util.Accountable;
+import static java.util.Collections.emptyList;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
+import org.apache.lucene.util.Accountable;
 
 public class MapDirectoryEntry implements Accountable {
 
-    List<byte[]> buffers = new ArrayList<byte[]>();
-    int bufferSize;
-    long length;
-    long lastModified = System.currentTimeMillis();
-    protected long sizeInBytes;
+	List<byte[]> buffers = new ArrayList<byte[]>();
+	int bufferSize;
+	long length;
+	long lastModified = System.currentTimeMillis();
+	protected long sizeInBytes;
 
-    public MapDirectoryEntry() {
-    }
+	public MapDirectoryEntry() {
+	}
 
-    public int getBufferSize() {
-        return bufferSize;
-    }
+	public int getBufferSize() {
+		return bufferSize;
+	}
 
-    public void setBufferSize(final int bufferSize) {
-        this.bufferSize = bufferSize;
-    }
+	public void setBufferSize(final int bufferSize) {
+		this.bufferSize = bufferSize;
+	}
 
-    public synchronized long getLength() {
+	public synchronized long getLength() {
 
-        return length;
-    }
+		return length;
+	}
 
-    protected synchronized void setLength(final long length) {
-        this.length = length;
-    }
+	protected synchronized void setLength(final long length) {
+		this.length = length;
+	}
 
-    public long getLastModified() {
-        return lastModified;
-    }
+	public long getLastModified() {
+		return lastModified;
+	}
 
-    protected void setLastModified(final long lastModified) {
-        this.lastModified = lastModified;
-    }
+	protected void setLastModified(final long lastModified) {
+		this.lastModified = lastModified;
+	}
 
-    protected byte[] addBuffer(final int size) {
-        byte[] buffer = new byte[size];
-        synchronized (this) {
-            buffers.add(buffer);
-            sizeInBytes += size;
-        }
-        return buffer;
-    }
+	protected byte[] addBuffer(final int size) {
+		byte[] buffer = new byte[size];
+		synchronized (this) {
+			buffers.add(buffer);
+			sizeInBytes += size;
+		}
+		return buffer;
+	}
 
-    protected synchronized byte[] getBuffer(final int index) {
-        return buffers.get(index);
-    }
+	protected synchronized byte[] getBuffer(final int index) {
+		return buffers.get(index);
+	}
 
-    protected final synchronized int numBuffers() {
-        return buffers.size();
-    }
+	protected final synchronized int numBuffers() {
+		return buffers.size();
+	}
 
-    public List<byte[]> getBuffers() {
-        return buffers;
-    }
+	public List<byte[]> getBuffers() {
+		return buffers;
+	}
 
-    public void setBuffers(final List<byte[]> buffers) {
-        this.buffers = buffers;
-    }
+	public void setBuffers(final List<byte[]> buffers) {
+		this.buffers = buffers;
+	}
 
-    @Override
-    public long ramBytesUsed() {
-        return sizeInBytes;
-    }
+	@Override
+	public long ramBytesUsed() {
+		return sizeInBytes;
+	}
+
+	@Override
+	public Collection<Accountable> getChildResources() {
+		// No child resources are related to this map directory implementation.
+		return emptyList();
+	}
 }

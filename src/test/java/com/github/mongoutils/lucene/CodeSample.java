@@ -1,31 +1,43 @@
-# mongo-lucene (for mailor)
+package com.github.mongoutils.lucene;
 
-Fork of [mongo-lucene](mongo-lucene) created for testing or lucene&mongo powered search on [mailor](http://mailor.us/) project.
+import static org.junit.Assert.assertEquals;
 
-Modifications:
+import java.util.concurrent.ConcurrentMap;
 
-- Java 8 is now required
-- Support for Lucene version 5.3.0
-- Maven was replaced with [gradle](http://gradle.org/)
-- Minor code changes
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field;
+import org.apache.lucene.document.TextField;
+import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.queryparser.classic.QueryParser;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TopScoreDocCollector;
+import org.apache.lucene.store.Directory;
+import org.junit.Before;
+import org.junit.Test;
 
-## License
+import com.github.mongoutils.collections.DBObjectSerializer;
+import com.github.mongoutils.collections.MongoConcurrentMap;
+import com.github.mongoutils.collections.SimpleFieldDBObjectSerializer;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.MongoClient;
 
-Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
+public class CodeSample {
 
-## Requirements / Dependencies
+	@Before
+	public void setUp() throws Exception {
+		// Clean
+		new MongoClient("localhost", 27017).getDB("mongo-lucene-test").getCollection("samplecollection").drop();
+	}
 
-* Java 1.8 (http://www.java.com/de/download/)
-* Apache Lucene 5.3.0 (http://lucene.apache.org)
-* MongoDB Java-Driver 2.12.3 (https://github.com/mongodb/)
-
-## Building
-**TODO**
-
-## Usage
-Following usage sample is present in file *mongo-lucene/src/test/java/com/github/mongoutils/lucene/CodeSample.java*:
-
-
+	@Test
+	public void sampleUsage() throws Exception {
 		// Prepare mongo connection
 		MongoClient mongo = new MongoClient("localhost", 27017);
 		DB db = mongo.getDB("mongo-lucene-test");
@@ -63,3 +75,6 @@ Following usage sample is present in file *mongo-lucene/src/test/java/com/github
 		ScoreDoc[] topDocs = collector.topDocs().scoreDocs;
 		assertEquals(1, topDocs.length);
 		assertEquals("My file's content ...", searcher.doc(topDocs[0].doc).getField("title").stringValue());
+	}
+
+}
