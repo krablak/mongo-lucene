@@ -1,6 +1,6 @@
 # mongo-lucene (for mailor)
 
-Fork of [mongo-lucene](https://github.com/rstiller/mongo-lucene) created for testing or lucene&mongo powered search on [mailor](http://mailor.us/) project.
+Fork of [mongo-lucene](https://github.com/rstiller/mongo-lucene) created for testing of lucene&mongo powered search on [mailor](http://mailor.us/) project.
 
 Modifications:
 
