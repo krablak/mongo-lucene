@@ -3,7 +3,12 @@
 Fork of [mongo-lucene](https://github.com/rstiller/mongo-lucene) created for testing of lucene&mongo powered search on [mailor](http://mailor.us/) project.
 
 Modifications:
+## Changes
+### Version 2.0.1
+- [Gradle wrapper](http://gradle.org/) updated to version [2.7](https://docs.gradle.org/current/release-notes#new-and-noteworthy-in-gradle-2.7)
+- Excluded transient dependency to obsolete version of *com.fasterxml.jackson.core* module forced by [mongo-collections](https://github.com/rstiller/mongo-collections)
 
+### Version 2.0.0
 - Java 8 is now required
 - Support for Lucene version 5.3.0
 - Maven was replaced with [gradle](http://gradle.org/)
@@ -18,7 +23,7 @@ Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0)
 * Java 8 JDK 
 * Apache Lucene 5.3.0 
 * MongoDB Java-Driver 2.12.3
-* MongoDB 3.x
+* MongoDB  2.x or 3.x
 
 ## Building
 
